@@ -1,9 +1,8 @@
 import matplotlib
-import matplotlib.pyplot as plt
 
 matplotlib.use("tkagg")
 import numpy as np
-from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg, NavigationToolbar2Tk
+from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
 from matplotlib.figure import Figure
 from tkinter import *
 import math
@@ -87,7 +86,7 @@ def Eulers(opt):
         x_cur += h
 
     Y = np.array(Y)
-    plt.plot(X, Y)
+    #plt.plot(X, Y)
     return X, Y
 
 
@@ -256,7 +255,7 @@ button_error.place(anchor="center", x=300, y=275)
 button_mx_error = Button(root, text="draw max error", command=lambda: draw_max_error_graph(options))
 button_mx_error.place(anchor="center", x=300, y=300)
 
-button_mx_error = Button(root, text="draw all errors", command=lambda: draw_all_error_graph(options))
+button_mx_error = Button(root, text="difference between different methods", command=lambda: draw_all_error_graph(options))
 button_mx_error.place(anchor="center", x=300, y=350)
 
 method_list_box = Listbox(root, height=5, width=15, selectmode=SINGLE)
