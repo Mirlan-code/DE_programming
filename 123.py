@@ -1,6 +1,6 @@
 import matplotlib
 
-matplotlib.use("tkagg")
+#matplotlib.use("tkagg")
 import numpy as np
 from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
 from matplotlib.figure import Figure
@@ -130,12 +130,13 @@ def draw_graph(opt):
     try:
         opt.INITIAL_X = float(box_x.get())
         opt.INITIAL_Y = float(box_y.get())
-        opt.num_seg = int(box_x1.get())
+        opt.num_seg = int(box_num.get())
+        UPPER_BOUND = float(box_X.get());
     except:
-        opt.INITIAL_X = 1
-        opt.INITIAL_Y = 4
-        box_x.insert(END, '1')
-        box_y.insert(END, '4')
+        opt.INITIAL_X = 0
+        opt.INITIAL_Y = 0
+        box_x.insert(END, '0')
+        box_y.insert(END, '0')
     opt.INITIAL_X = min(opt.INITIAL_X, UPPER_BOUND)
     draw_window = Tk()
     f = Figure()
@@ -161,9 +162,11 @@ def draw_error_graph(opt):
     try:
         opt.INITIAL_X = float(box_x.get())
         opt.INITIAL_Y = float(box_y.get())
+        opt.num_seg = int(box_num.get())
+        UPPER_BOUND = float(box_X.get());
     except:
-        opt.INITIAL_X = 1
-        opt.INITIAL_Y = 3
+        opt.INITIAL_X = 0
+        opt.INITIAL_Y = 0
     opt.INITIAL_X = min(opt.INITIAL_X, UPPER_BOUND)
     draw_window = Tk()
     f = Figure()
@@ -267,10 +270,13 @@ method_list_box.bind("<<ListboxSelect>>", options.update_option)
 
 # step_scale = Scale(root, orient=HORIZONTAL, length=300, from_=10, to=1000, resolution=1, command=options.update_num_seg)
 # step_scale.place(x=100, y=50)
+box_X = Entry(root, width=10)
+box_X.place(x=X0_POSITION_X, y=X0_POSITION_Y - 30)
+box_X.insert(END, '10')
 
-box_x1 = Entry(root, width=10)
-box_x1.place(x=X0_POSITION_X, y=X0_POSITION_Y - 30)
-box_x1.insert(END, '10')
+box_num = Entry(root, width=10)
+box_num.place(x=X0_POSITION_X, y=X0_POSITION_Y - 60)
+box_num.insert(END, '10')
 
 box_x = Entry(root, width=10)
 box_x.place(x=X0_POSITION_X, y=X0_POSITION_Y)
@@ -287,7 +293,10 @@ label_y = Label(root, text="y0:")
 label_y.place(x=Y0_POSITION_X - 70, y=Y0_POSITION_Y)
 
 label_num = Label(root, text="number of steps:")
-label_num.place(x=X0_POSITION_X - 100, y=X0_POSITION_Y - 30)
+label_num.place(x=X0_POSITION_X - 100, y=X0_POSITION_Y - 60)
+
+label_X = Label(root, text="X:")
+label_X.place(x=X0_POSITION_X - 70, y=X0_POSITION_Y - 30)
 
 label_title = Label(root, text="y' = -2y + 4x")
 label_title.place(x=300, y=10, anchor="center")
